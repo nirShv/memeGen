@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
+    <title>Meme Gen</title>
+</head>
+
+<body onload="init()">
+    <header>
+        <img class="main-header logo" src="logo/logo.png">
+        <nav>
+            <div class="main-header nav Gallery">Gallery</div>
+            <div class="main-header nav about">About</div>
+        </nav>
+    </header>
+    <section class="gallery">
+        <div class="grid-container">
+            <!-- <img src="img/2.jpg" class="img img2" onclick="onImgSelect()" alt=""> -->
+        </div>
+    </section>
+
+    <section class="editor" hidden>
+        <div class="canvas-container">
+            <canvas id="my-canvas" height="450" width="450" style="outline:1px solid green"></canvas>
+        </div>
+
+        <div class="user-settings">
+            <div class="user-settings section1">
+                <input class="lin1-input" type="text" placeholder="Enter your text..." oninput="onTextEdit(event.target.value)" />
+                <button class="switch-line-btn" onclick="onLineToggle()">switch line</button>
+            </div>
+            <div class="user-settings section2">
+                <button onclick="onFontSizeChange(1)">+</button>
+                <button onclick="onFontSizeChange(-1)">-</button>
+                <input type="color" id="b-g-color" name="b-g-color" value="#000000"
+                    onchange="onSetColor(event.target.value)" />
+            </div>
+
+
+        </div>
+
+        <button onclick="onBackToGallery()">Back to the Gallery</button>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script src="js/memeService.js"></script>
+    <script src="js/galleryService.js"></script>
+    <script src="js/galleryController.js"></script>
+    <script src="js/memeController.js"></script>
+
+</body>
+
+</html>
