@@ -1,41 +1,67 @@
  .editor.shown {
-     height: 100%;
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     grid-template-rows: 60vh;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80vh;
+
  }
 
  .canvas-container {
-     background-color: rgb(72, 130, 168);
-     margin: 0 auto;
-     width: 50vw;
-     height: 60vh;
+    background-color: rgb(72, 130, 168);
+    margin: 0 auto;
+    width: 50vw;
+    height: 80vh;
  }
 
  canvas {
-     width: 100%;
-     height: 100%;
-     display: block;
-     margin: 0 auto;
-     outline: 1px solid black;
-     background-color: #fff;
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    outline: 1px solid black;
+    background-color: #fff;
  }
 
- .user-settings{
+ .user-settings {
     padding: 10px;
  }
 
- .user-settings.section1{
+ .user-settings.section1 {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(2,1fr);
-    /* gap: 5px; */
+    grid-template-columns: repeat(5, minmax(60px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+
  }
 
- .lin1-input{
+ .lin1-input {
+    border-radius: 12px;
+    background-color: #ffffff;
     grid-column: 1/-1;
  }
 
- .switch-line-btn{
+ .switch-line-btn {
     grid-column: 2/3;
+ }
+
+ .user-settings.section2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
+ }
+
+ .font-select {
+    grid-column: 1/4;
+    border-radius: 12px;
+    background-color: #ffffff;
+ }
+
+ .user-settings.section3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+ }
+
+ .file-btn {
+    width: 120px;
  }

@@ -24,7 +24,7 @@ nav {
 
 .Gallery {
     padding: 5px;
-    border-right: 1px black solid;
+    border-inline-end: 1px black solid;
 }
 
 .Gallery:hover {
@@ -36,5 +36,14 @@ nav {
 }
 
 .about:hover {
+    border-bottom: 1px black solid;
+}
+
+.saved {
+    padding: 5px;
+    border-inline-end: 1px black solid;
+}
+
+.saved:hover {
     border-bottom: 1px black solid;
 }

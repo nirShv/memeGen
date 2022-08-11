@@ -1,8 +1,7 @@
 .grid-container {
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(3, minmax(150px, 1fr));
-    grid-template-rows: repeat(4, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(211px, 1fr));
     gap: 10px;
 }
 
@@ -17,4 +16,8 @@
 .img:hover {
     transform: scale(1.1);
     transition: 800ms;
+}
+
+.hide-canvas {
+    display: none;
 }

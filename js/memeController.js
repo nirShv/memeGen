@@ -1,8 +1,5 @@
 'use strict'
 
-var gColor='red';
-var gFont=40;
-
 function editorInit() {
     document.querySelector('.editor').hidden = false
     document.querySelector('.editor').classList.add('shown')
@@ -23,24 +20,57 @@ function loadImage(memeImg, onImageReady, memeForRender) {
 
 function renderImg(img, memeForRender) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    drawText(memeForRender.lines[0].txt, 200, 40)
-    drawText(memeForRender.lines[1].txt, 200, 350)
-    console.log('gElCanvas.width',gElCanvas.width);
-    console.log('gElCanvas.height ',gElCanvas.height );
+    // drawText(memeForRender.lines[0].txt, 200, 40)
+    // drawText(memeForRender.lines[1].txt, 200, 350)
+    memeForRender.lines.map((line, idx) => {
+        const { txt } = line
+        line.y = gElCanvas.height / 2
+        line.x = gElCanvas.width / 2
+        if (idx === 0) {
+            line.y = 40
+            line.x = 200
+        }
+        if (idx === 1) {
+            line.y = gElCanvas.height - 80
+            line.x = 200
+        }
+        drawText(txt, line.x, line.y, line.size, line.align, line.color)
+    })
+    drawE(memeForRender.lines[gLineIdx].x, memeForRender.lines[gLineIdx].y)
+    // console.log('gElCanvas.width',gElCanvas.width);
+    // console.log('gElCanvas.height ',gElCanvas.height );
 }
 
-function drawText(txt, x, y) {
+function drawText(txt, x, y, fontSize, align, color) {
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
-    gCtx.textAlign = 'center'
+    gCtx.textAlign = align
     gCtx.lineWidth = 1
-    gCtx.font = `${gFont}px david`
-    gCtx.fillStyle = gColor
-    console.log(txt, x, y)
+    gCtx.font = `${fontSize}px impact`
+    gCtx.fillStyle = color
     gCtx.fillText(txt, x, y)
     gCtx.strokeStyle = 'black'
     gCtx.strokeText(txt, x, y)
+    console.log('gCtx.textBaseline', gCtx.textBaseline);
+    console.log('gCtx.lineWidth', gCtx.lineWidth);
+    console.log('gCtx.font', gCtx.font);
+    console.log('gCtx.fillStyle', gCtx.fillStyle);
+    console.log('txt, x, y', txt, x, y);
+    console.log('gCtx.strokeStyle', gCtx.strokeStyle);
+    console.log('txt, x, y', txt, x, y);
+
     gCtx.closePath()
+}
+
+function drawE(x, y) {
+    gCtx.beginPath();
+    gCtx.lineWidth = 2;
+    gCtx.ellipse(x, y, 180, 30, Math.PI / 1, 0, 2 * Math.PI);
+    // gCtx.fillStyle = 'blue';
+    // gCtx.fill();
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
+    gCtx.stroke();
 }
 
 function onTextEdit(newTxt) {
@@ -55,14 +85,42 @@ function onBackToGallery() {
 }
 
 function onSetColor(userColor) {
-    gColor = userColor
-}
-
-function onFontSizeChange(action){
-    gFont=gFont+action
+    setColor(userColor)
     renderMeme()
 }
 
-function onLineToggle(){
+function onFontSizeChange(action) {
+    // gFont=gFont+action
+    setFontSize(action)
+    renderMeme()
+}
+
+function onTextAlign(textAlign) {
+    setTextAlign(textAlign)
+    renderMeme()
+}
+
+function onLineToggle() {
     setLineToggle()
+    renderMeme()
+}
+
+function onLineDelete() {
+    lineDelete()
+    renderMeme()
+}
+
+function onAddLine() {
+    addLine()
+    renderMeme()
+}
+
+function onSave() {
+    saveMeme()
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-meme';
 }

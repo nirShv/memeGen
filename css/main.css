@@ -1,5 +1,8 @@
+@import "basic/typography.css";
+@import "basic/helpers.css";
 @import "basic/base.css";
 
 @import "components/header.css";
+@import "components/search-section.css";
 @import "components/gallery.css";
 @import "components/editor.css";
