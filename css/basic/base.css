@@ -12,4 +12,16 @@ button {
     height: 60px;
     border-radius: 12px;
     background-color: #ffffff;
+    cursor: pointer
+}
+
+button:hover {
+    color: red;
+    background-color: antiquewhite;
+}
+
+button:active {
+    color: blue;
+    background-color: antiquewhite;
+    box-shadow: inset;
 }

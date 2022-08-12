@@ -1,16 +1,28 @@
- .editor.shown {
+ /* .editor.shown {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 80vh;
 
+ } */
+
+ .editor.shown {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, minmax(1fr, 50%));
+    gap: 5px;
  }
+
+ /* .user-settings{
+grid-row: 2/-1;
+} */
 
  .canvas-container {
     background-color: rgb(72, 130, 168);
     margin: 0 auto;
-    width: 50vw;
-    height: 80vh;
+    /* width: 80vw; */
+    width: 20vw;
+    height: 50vh;
  }
 
  canvas {
@@ -22,16 +34,20 @@
     background-color: #fff;
  }
 
- .user-settings {
+ /* .user-settings {
     padding: 10px;
- }
+ } */
 
  .user-settings.section1 {
     display: grid;
-    grid-template-columns: repeat(5, minmax(60px, 1fr));
+    grid-template-columns: repeat(5, minmax(60px, 100px));
     grid-template-rows: repeat(2, 1fr);
     gap: 5px;
+ }
 
+ .user-settings.section1>*:not(.lin1-input) {
+    align-self: center;
+    justify-self: center;
  }
 
  .lin1-input {
@@ -40,15 +56,26 @@
     grid-column: 1/-1;
  }
 
- .switch-line-btn {
-    grid-column: 2/3;
+ .lin1-input:focus {
+    background-color: rgb(236, 209, 213);
  }
+
+ /* .switch-line-btn {
+    grid-column: 2/3;
+ } */
 
  .user-settings.section2 {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(60px, 100px));
     grid-template-rows: repeat(2, 1fr);
     gap: 5px;
+    /* align-items: center;
+    justify-items: center; */
+ }
+
+ .user-settings.section2>*:not(.font-select) {
+    align-self: center;
+    justify-self: center;
  }
 
  .font-select {
@@ -57,11 +84,30 @@
     background-color: #ffffff;
  }
 
+ /* .font-select:hover {
+
+} */
+
  .user-settings.section3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(120px, 166px));
+    align-items: center;
+    justify-items: center;
  }
 
  .file-btn {
     width: 120px;
+ }
+
+ .update-msg {
+    position: fixed;
+    bottom: -100px;
+    right: 10px;
+    background-color: wheat;
+    padding: 10px;
+ }
+
+ .update-msg.open {
+    bottom: 10px;
+    transition: bottom .5s;
  }

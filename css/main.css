@@ -6,3 +6,5 @@
 @import "components/search-section.css";
 @import "components/gallery.css";
 @import "components/editor.css";
+
+@import "mq/mq.css";

@@ -15,17 +15,17 @@
         <nav>
             <div class="main-header nav Gallery" onclick="onBackToGallery()">Gallery</div>
             <div class="main-header nav saved" onclick="onSavedMemes()">Saved</div>
-            <div class="main-header nav about">About</div>
+            <!-- <div class="main-header nav about">About</div> -->
         </nav>
     </header>
 
     <section class="gallery">
         <div class="search-section">
-            <input type="search" placeholder="Search" class="search-field" />
+            <input type="search" placeholder="Search" class="search-field" onkeyup="onSearch(event)" />
             <ul class="keywords"></ul>
         </div>
         <div class="grid-container">
-             <canvas id="keywords-canvas" height="75" width="600" style="outline:1px solid green" class="hide-canvas"></canvas>
+            <!-- <canvas id="keywords-canvas" height="75" width="600" style="outline:1px solid green" class="hide-canvas"></canvas> -->
             <!-- <img src="img/2.jpg" class="img img2" onclick="onImgSelect()" alt=""> -->
         </div>
     </section>
@@ -40,6 +40,8 @@
                 <input class="lin1-input" type="text" placeholder="Enter your text..."
                     oninput="onTextEdit(event.target.value)" />
                 <button class="btn switch-line-btn" onclick="onLineToggle()">switch line</button>
+                <button class="btn line-up-btn" onclick="onMoveLine(-10)">☝</button>
+                <button class="btn line-down-btn" onclick="onMoveLine(10)">👇</button>
                 <button class="btn add-line" onclick="onAddLine()">➕</button>
                 <button class="btn delete-line" onclick="onLineDelete()">🗑</button>
             </div>
@@ -49,7 +51,7 @@
                 <button onclick="onFontSizeChange(-1)">-</button>
                 <button onclick="onTextAlign('right')">👈</button>
                 <button onclick="onTextAlign('left')">👉</button>
-                <button onclick="onTextAlign('center')">☝</button>
+                <button onclick="onTextAlign('center')">🤘</button>
                 <select class="font-select">
                     <option value="impact">Impact</option>
                 </select>
@@ -59,7 +61,7 @@
             <h3>File settings</h3>
             <div class="user-settings section3">
                 <button class="file-btn save-btn" onclick="onSave()">save</button>
-                <a href="#" class="file-btn"  onclick="downloadCanvas(this)" download="cool-meme">Download</a>
+                <a href="#" class="file-btn" onclick="downloadCanvas(this)" download="cool-meme">Download</a>
                 <button class="file-btn Upload-btn" onclick="uploadImg()">Upload meme And Share</button>
             </div>
         </div>
@@ -72,6 +74,8 @@
         </div>
         <!-- <button onclick="onBackToGallery()">Back to the Gallery</button> -->
     </section>
+
+    <div class="update-msg"></div>
 
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/upload-service.js"></script>

@@ -1,17 +1,19 @@
 'use strict'
 
+var gRelevantImgs = []
+
 var gMemes = []
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+var gKeywordSearchCountMap = { 'funny': 5, 'cat': 16, 'baby': 6, 'political': 1, 'movie': 12 }
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'political'] },
     { id: 2, url: 'img/2.jpg', keywords: ['cute', 'dogs', 'love'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['cute', 'dogs', 'babies', 'sleep'] },
-    { id: 4, url: 'img/4.jpg', keywords: ['funny', 'cat', 'sleep'] },
-    { id: 5, url: 'img/5.jpg', keywords: ['cute', 'babies', 'Victory'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['cute', 'dogs', 'baby', 'sleep'] },
+    { id: 4, url: 'img/4.jpg', keywords: ['cute', 'cat', 'sleep'] },
+    { id: 5, url: 'img/5.jpg', keywords: ['cute', 'baby', 'Victory'] },
     { id: 6, url: 'img/6.jpg', keywords: ['funny', 'aliens'] },
-    { id: 7, url: 'img/7.jpg', keywords: ['funny', 'babies', 'surprised'] },
+    { id: 7, url: 'img/7.jpg', keywords: ['funny', 'baby', 'surprised'] },
     { id: 8, url: 'img/8.jpg', keywords: ['tell me more', 'movie'] },
-    { id: 9, url: 'img/9.jpg', keywords: ['funny', 'babies'] },
+    { id: 9, url: 'img/9.jpg', keywords: ['funny', 'baby'] },
     { id: 10, url: 'img/10.jpg', keywords: ['Laughter', 'political'] },
     { id: 11, url: 'img/11.jpg', keywords: ['love', 'Kissing', 'sport'] },
     { id: 12, url: 'img/12.jpg', keywords: ['what would you do'] },
@@ -23,13 +25,25 @@ var gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['Toy Story', 'everywhere', 'movie'] },
 ]
 
+function getImgForDisplay() {
+    if (!gRelevantImgs || gRelevantImgs.length === 0) {
+        return gImgs
+    } else {
+
+        return gRelevantImgs
+    }
+}
+
 function getImg(id) {
     return gImgs.find(img => img.id === id)
 }
 
-function getImgs() {
-    return gImgs
+function setFullGallery() {
+    gRelevantImgs = []
 }
+// function getImgs() {
+//     return gImgs
+// }
 
 function getKeywords() {
     return gKeywordSearchCountMap
@@ -44,16 +58,31 @@ function getKeywords() {
 // }
 
 function savedMemes() {
-    console.log('test');
     var memes = loadFromStorage(STORAGE_KEY)
-    console.log('memes', memes);
     // if Nothing in storage
     if (!memes || !memes.length) {
         alert('You have no saved memes yet')
         return false
     }
     gMemes = memes
-    console.log('gMemes', gMemes);
     renderSavedMemes(gMemes)
+}
+
+function KeywordSearch(Keyword) {
+    console.log('KeywordSearch', Keyword);
+    if (!gKeywordSearchCountMap[Keyword]) gKeywordSearchCountMap[Keyword] = 1
+    else ++gKeywordSearchCountMap[Keyword]
+    getRelevantImg(Keyword)
+}
+
+function getRelevantImg(searchKey) {
+    console.log('getRelevantImg', searchKey);
+    gImgs.forEach(img => {
+        img.keywords.forEach(keyword => {
+            if (keyword === searchKey) gRelevantImgs.push(img)
+        })
+    });
+    if (gRelevantImgs.length === 0) flashMsg('No images matching your search')
+    return gRelevantImgs
 }
 

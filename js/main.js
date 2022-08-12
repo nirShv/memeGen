@@ -11,7 +11,7 @@ function init() {
     gCtx = gElCanvas.getContext('2d')
 
     // gElCanvasKeywords = document.querySelector('#keywords-canvas')
-    // gCtxKeywords = gElCanvas.getContext('2d')
+    // gCtxKeywords = gElCanvasKeywords.getContext('2d')
 
     window.addEventListener('resize', () => {
         resizeCanvas()

@@ -8,17 +8,23 @@ function renderGallery() {
 }
 
 function loadGalleryImage() {
-    const imgs = getImgs()
+    const imgs = getImgForDisplay()
+    // imgs.forEach((memeImg, idx) => {
+    //     var img = new Image()
+    //     img.src = memeImg.url
+    //     img.setAttribute(`id`, idx + 1)
+    //     img.classList.add(`img`, `img${idx + 1}`)
+    //     img.setAttribute(`onclick`, "onImgSelect(this)")
+    //     document.querySelector(".grid-container").appendChild(img);
+    //     // img.onload = onImageReady.bind(null, img, txt)
+    // })
 
-    imgs.forEach((memeImg, idx) => {
-        var img = new Image()
-        img.src = memeImg.url
-        img.setAttribute(`id`, idx + 1)
-        img.classList.add(`img`, `img${idx + 1}`)
-        img.setAttribute(`onclick`, "onImgSelect(this)")
-        document.querySelector(".grid-container").appendChild(img);
-        // img.onload = onImageReady.bind(null, img, txt)
-    })
+
+    const strHTMLs = imgs.map((memeImg, idx) =>
+        `<img src="${memeImg.url}" id=${idx + 1} class="img img${idx + 1}" onclick="onImgSelect(this)">`
+    )
+    document.querySelector('.grid-container').innerHTML = strHTMLs.join('')
+    setFullGallery()
 }
 
 function renderSearchKeywords() {
@@ -28,7 +34,7 @@ function renderSearchKeywords() {
 
     const strHTMLs = Object.keys(keywords).map((keyword, idx) =>
         `
-            <li onclick="onKeyword(event.target.value)" class="keyword" style="font-size:${fontSizes[idx] + 10}px">
+            <li onclick="onKeyword(\'${keyword}\')" class="keyword" style="font-size:${fontSizes[idx] + 10}px">
                 ${keyword}
             </li>
             `
@@ -75,9 +81,23 @@ function onImgSelect(img) {
 }
 
 function BackToGallery() {
+    setFullGallery()
+    renderGallery()
     document.querySelector('.gallery').hidden = false
 }
 
+function onKeyword(Keyword) {
+    KeywordSearch(Keyword)
+    renderGallery()
+}
+
+function onSearch(ev) {
+    if (ev.code === "Enter") {
+        KeywordSearch(ev.target.value)
+        ev.target.value = ''
+    }
+    renderGallery()
+}
 // function drawText1(txt, x, y) {
 //     gCtxKeywords.beginPath()
 //     gCtxKeywords.textBaseline = 'middle'

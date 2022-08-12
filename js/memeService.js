@@ -3,14 +3,14 @@
 const STORAGE_KEY = 'memesDB'
 
 var gLineIdx = 0
-// var gLineCoords = [{ x: 200, y: 40 }, { x: 200, y: 350 }]
+const elCanvas = document.querySelector('#my-canvas')
 var gMeme =
 {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [{
         txt: 'I sometimes eat Falafel',
-        size: 30,
+        size: 20,
         align: 'center',
         color: 'red',
         x: 200,
@@ -18,11 +18,11 @@ var gMeme =
     },
     {
         txt: 'But when Im not I eat Shawarma',
-        size: 30,
+        size: 20,
         align: 'center',
         color: 'blue',
         x: 200,
-        y: 350
+        y: elCanvas.height - 80//350
     }
     ]
 }
@@ -38,6 +38,13 @@ function textEdit(newTxt) {
 function setFontSize(action = 0) {
     gMeme.lines[gLineIdx].size += action
     return gMeme.lines[gLineIdx].size
+}
+
+function MoveLine(action = 0) {
+    console.log('action', action);
+    gMeme.lines[gLineIdx].y += action
+    console.log('gMeme.lines[gLineIdx].y', gMeme.lines[gLineIdx].y);
+    return gMeme.lines[gLineIdx].y
 }
 
 function setColor(userColor) {
@@ -59,7 +66,6 @@ function setLineToggle() {
     var len = gMeme.lines.length
     if (gLineIdx + 1 === len) gLineIdx = 0
     else gLineIdx += 1
-
 }
 
 function lineDelete() {
@@ -71,11 +77,14 @@ function lineDelete() {
 function addLine() {
     const newLine = {
         txt: 'Enter text',
-        size: 30,
+        size: 20,
         align: 'left',
-        color: 'black'
+        color: 'black',
+        y: elCanvas.height / 2,
+        x: elCanvas.width / 2
     }
     gMeme.lines.push(newLine)
+    gLineIdx = gMeme.lines.length - 1
     console.log('gMeme', gMeme);
 }
 
