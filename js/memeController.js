@@ -1,14 +1,13 @@
 'use strict'
 
-function editorInit(/*place*/) {
+function editorInit(isSaved) {
     document.querySelector('.editor').hidden = false
     document.querySelector('.editor').classList.add('shown')
-    // setEditMode(true)
-    renderMeme(/*place*/)
+    renderMeme(isSaved)
 }
 
-function renderMeme(/*place*/) {
-    const memeForRender = getMeme(/*place*/)
+function renderMeme(isSaved) {
+    const memeForRender = getMeme(isSaved)
     const imgForRender = getImg(memeForRender.selectedImgId)
     loadImage(imgForRender, renderImg, memeForRender)
 }
@@ -22,7 +21,6 @@ function loadImage(memeImg, onImageReady, memeForRender) {
 function renderImg(img, memeForRender) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     memeForRender.lines.map((line, idx) => {
-
         drawText(line.txt, line.x, line.y, line.size, line.align, line.color)
     })
     drawRect(memeForRender.lines[gLineIdx].x, memeForRender.lines[gLineIdx].y)
@@ -36,7 +34,6 @@ function drawText(txt, x, y, fontSize, align, color) {
     gCtx.textAlign = align
     gCtx.lineWidth = 1
     gCtx.font = `${fontSize}px fontImpact`//fontImpact
-    // gCtx.font = 'fontImpact';
     gCtx.fillStyle = color
     gCtx.fillText(txt, x, y)
     gCtx.strokeStyle = 'black'
@@ -71,7 +68,6 @@ function getTextBBox(gCtx, text) {
 function onTextEdit(newTxt) {
     textEdit(newTxt)
     setEditMode(true)
-    // debugger
     renderMeme()
 }
 
@@ -102,7 +98,6 @@ function onFontSizeChange(action) {
 }
 
 // function onFontChange(action) {
-//     console.log('action', action);
 //     setFont(action)
 //     setEditMode(true)
 //     renderMeme()
@@ -146,9 +141,9 @@ function onSave() {
 }
 
 function downloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'my-meme';
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'my-meme'
 }
 
 function flashMsg(msg) {

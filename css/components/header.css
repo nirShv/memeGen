@@ -32,18 +32,9 @@ nav {
     border-bottom: 1px black solid;
 }
 
-/* .about {
-    padding: 5px;
-}
-
-.about:hover {
-    border-bottom: 1px black solid;
-} */
-
 .saved {
     padding: 5px;
     cursor: pointer
-    /* border-inline-end: 1px black solid; */
 }
 
 .saved:hover {

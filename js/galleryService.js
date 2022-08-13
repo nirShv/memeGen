@@ -47,9 +47,6 @@ function getKeywords() {
 
 function savedMemes() {
     var memes = loadFromStorage(STORAGE_KEY)
-
-    // memes = JSON.parse(memes)
-    console.log('savedMemes-memes', memes);
     // if Nothing in storage
     if (!memes || !memes.length) {
         flashMsg('You have no saved memes yet')
@@ -58,7 +55,6 @@ function savedMemes() {
     gRelevantImgs = []
     gMemes = []
     memes.forEach(meme => {
-        // meme = JSON.parse(meme)
         gRelevantImgs.push(getImg(meme.selectedImgId))
         gMemes.push(meme)
     })
@@ -76,7 +72,7 @@ function getRelevantImg(searchKey) {
         img.keywords.forEach(keyword => {
             if (keyword === searchKey) gRelevantImgs.push(img)
         })
-    });
+    })
     if (gRelevantImgs.length === 0) flashMsg('No images matching your search')
     return gRelevantImgs
 }

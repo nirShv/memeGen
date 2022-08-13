@@ -10,7 +10,6 @@ function renderGallery() {
 function loadGalleryImage() {
     const imgs = getImgForDisplay()
     const strHTMLs = imgs.map((memeImg, idx) =>
-        // `<img src="${memeImg.url}" id=${idx + 1} class="img img${idx + 1}" onclick="onImgSelect(this)">`
         `<img data-place="${idx}" src="${memeImg.url}" id=${memeImg.id} class="img img${memeImg.id}" onclick="onImgSelect(this)">`
     )
     document.querySelector('.grid-container').innerHTML = strHTMLs.join('')
@@ -32,31 +31,11 @@ function renderSearchKeywords() {
     elKeywords.innerHTML = strHTMLs.join('')
 }
 
-// memes = JSON.parse(memes)
-//אחרי ההפסקה: לבדוק למה הפונקציה הזאת הורסת את עריכת הממים 
-// function renderSavedMemes(memes,onImageReady=renderImg) {
-//     // debugger
-//     memes.forEach((meme, idx) => {
-//         var img = new Image()
-//         img.src = `img/${meme.selectedImgId}.jpg`
-//         img.classList.add(`meme`)
-//         console.log('img.classList',img.classList);
-//         img.setAttribute(`onclick`, "onImgSelect(this)")
-//         setMemeInfo(meme)
-//         img.onload = onImageReady.bind(null, img, meme)
-//         document.querySelector(".grid-container").appendChild(img);
-//         console.log('grid',document.querySelector(".grid-container"));
-//     })
-// }
-
-
 function onImgSelect(img) {
-    console.log('onImgSelect', img);
     setImg(+img.id)
-    console.log('onImgSelect-place',img.dataset.place);
-    gPlace=img.dataset.place
+    gPlace = img.dataset.place
     document.querySelector('.gallery').hidden = true
-    editorInit(/*img.dataset.place*/)
+    editorInit(img.dataset.saved === 'saved-meme' ? true : false)
 }
 
 function BackToGallery() {
@@ -79,8 +58,20 @@ function onSearch(ev) {
 }
 
 function onSavedMemes() {
-    // BackToGallery()
-    onBackToGallery()
+    document.querySelector('.editor').hidden = true
+    document.querySelector('.editor').classList.remove('shown')
+    setEditMode(false)
+    BackToGallery()
     savedMemes()
-    renderGallery()
+    renderSaved()
+}
+
+function renderSaved() {
+    const strHTMLs = []
+    gMemes.forEach((meme, idx) => {
+        strHTMLs.push(`
+        <img data-place="${idx}" src="img/${meme.selectedImgId}.jpg" id=${meme.selectedImgId} class="img img${meme.selectedImgId}" data-saved="saved-meme" onclick="onImgSelect(this)">`)
+    })
+    document.querySelector('.grid-container').innerHTML = strHTMLs.join('')
+    setFullGallery()
 }

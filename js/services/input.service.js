@@ -1,7 +1,6 @@
 'use strict'
 
 function onImgInput(ev) {
-    console.log(ev);
     loadImageFromInput(ev, _renderImg)
 }
 

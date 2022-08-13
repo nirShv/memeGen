@@ -33,12 +33,8 @@ var gMeme =
     ]
 }
 
-function getMeme(/*place*/) {
-    // gMeme.lines.map(line => {
-    //     line.x = elCanvas.width / 2
-    // })
-    // debugger
-    setLines(/*place*/)
+function getMeme(isSaved) {
+    setLines(isSaved)
     return gMeme
 }
 
@@ -76,7 +72,6 @@ function setTextAlign(textAlign) {
 
 function setImg(id) {
     gMeme.selectedImgId = id
-    // gMeme.lines[0].txt = ''
 }
 
 function setLineToggle() {
@@ -85,16 +80,9 @@ function setLineToggle() {
     else gLineIdx += 1
 }
 
-function setLines(/*place*/) {
-    // ------------------------------------------------------------------------------
-    console.log('gMeme.fromSaved', gMeme.fromSaved);
-    console.log('gPlace', gPlace);
-    if (gMeme.fromSaved) {
+function setLines(isSaved) {
+    if (isSaved) {
         gMeme.fromSaved = false
-        // img = gImgs[gMeme.selectedImgId - 1]
-        // console.log('gMeme fromSaved = true', gMeme);
-        // return
-console.log('gMemes fromSaved=true',gMemes);
         gMeme.lines = []
         gMemes[gPlace].lines.forEach(line => {
             const newLine = {
@@ -111,18 +99,23 @@ console.log('gMemes fromSaved=true',gMemes);
     } else if (!gMeme.editMode) {
         gMeme.lines.splice(2)
         gLineIdx = 0
-        gMeme.lines[0].txt = TXT_DEFAULT[0]
-        gMeme.lines[1].txt = TXT_DEFAULT[1]
-        gMeme.lines[0].size = 20
-        gMeme.lines[1].size = 20
-        gMeme.lines[0].align = 'center'
-        gMeme.lines[1].align = 'center'
-        gMeme.lines[0].color = 'red'
-        gMeme.lines[1].color = 'blue'
-        gMeme.lines[0].x = elCanvas.width / 2
-        gMeme.lines[1].x = elCanvas.width / 2
-        gMeme.lines[0].y = elCanvas.height - 400//40
-        gMeme.lines[1].y = elCanvas.height - 80
+
+        if (gMeme.lines.length>=1) {
+            gMeme.lines[0].txt = TXT_DEFAULT[0]
+            gMeme.lines[0].size = 20
+            gMeme.lines[0].align = 'center'
+            gMeme.lines[0].color = 'red'
+            gMeme.lines[0].x = elCanvas.width / 2
+            gMeme.lines[0].y = elCanvas.height - 400//40
+        }
+        if (gMeme.lines.length>=2) {
+            gMeme.lines[1].txt = TXT_DEFAULT[1]
+            gMeme.lines[1].size = 20
+            gMeme.lines[1].align = 'center'
+            gMeme.lines[1].color = 'blue'
+            gMeme.lines[1].x = elCanvas.width / 2
+            gMeme.lines[1].y = elCanvas.height - 80
+        }
     }
 }
 
@@ -151,15 +144,12 @@ function addLine() {
 function saveMeme() {
     gMeme.fromSaved = true
     const meme = createMeme(gMeme)
-    // const memeStr = JSON.stringify(gMeme)
     gMemes.push(meme)
-    console.log('gMemes-after', gMemes);
     saveMemeToStorage()
 }
 
 function saveMemeToStorage() {
     saveToStorage(STORAGE_KEY, gMemes)
-    // gMemes=[]
 }
 
 function createMeme(meme) {
@@ -183,5 +173,4 @@ function createMeme(meme) {
     })
 
     return newMeme
-    console.log('newMeme', newMeme);
 }
