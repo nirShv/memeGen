@@ -39,26 +39,38 @@
             <div class="user-settings section1">
                 <input class="lin1-input" type="text" placeholder="Enter your text..."
                     oninput="onTextEdit(event.target.value)" />
-                <button class="btn switch-line-btn" onclick="onLineToggle()">switch line</button>
-                <button class="btn line-up-btn" onclick="onMoveLine(-10)">☝</button>
-                <button class="btn line-down-btn" onclick="onMoveLine(10)">👇</button>
-                <button class="btn add-line" onclick="onAddLine()">➕</button>
-                <button class="btn delete-line" onclick="onLineDelete()">🗑</button>
+                <!-- <button class="btn switch-line-btn" onclick="onLineToggle()">switch line</button> -->
+                <!-- <button class="btn line-up-btn" onclick="onMoveLine(-10)">☝</button> -->
+                <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" class="btn"
+                    onclick="onLineToggle()">
+                <img src="icons/arrow d.png" class="btn" onclick="onMoveLine(-10)">
+                <img src="icons/arrow up.png" class="btn" onclick="onMoveLine(10)">
+                <!-- <button class="btn line-down-btn" onclick="onMoveLine(10)">👇</button> -->
+                <!-- <button class="btn add-line" onclick="onAddLine()">➕</button> -->
+                <!-- <button class="btn delete-line" onclick="onLineDelete()">🗑</button> -->
+                <img src="icons/add.png" class="btn" onclick="onAddLine()">
+                <img src="icons/trash.png" class="btn" onclick="onLineDelete()">
             </div>
             <h3>Fonts settings</h3>
             <div class="user-settings section2">
-                <button onclick="onFontSizeChange(1)">+</button>
-                <button onclick="onFontSizeChange(-1)">-</button>
-                <button onclick="onTextAlign('right')">👈</button>
-                <button onclick="onTextAlign('left')">👉</button>
-                <button onclick="onTextAlign('center')">🤘</button>
-                <select class="font-select" >
+                <!-- <button onclick="onFontSizeChange(1)">+</button> -->
+                <!-- <button onclick="onFontSizeChange(-1)">-</button> -->
+                <!-- <button onclick="onTextAlign('right')">👈</button> -->
+                <!-- <button onclick="onTextAlign('left')">👉</button> -->
+                <!-- <button onclick="onTextAlign('center')">🤘</button> -->
+                <img src="icons/increase font - icon.png" class="btn" onclick="onFontSizeChange(1)">
+                <img src="icons/decrease font - icon.png" class="btn" onclick="onFontSizeChange(-1)">
+                <img src="icons/align-to-left.png" class="btn" onclick="onTextAlign('right')">
+                <img src="icons/align-to-right.png" class="btn" onclick="onTextAlign('left')">
+                <img src="icons/center-text-alignment.png" class="btn" onclick="onTextAlign('center')">
+                <select class="font-select">
                     <!-- onchange="onFontChange(event.target.value)" -->
                     <option value="fontImpact">Impact</option>
                     <!-- <option value="montserrat">Montserrat</option> -->
                 </select>
                 <input type="color" id="b-g-color" name="b-g-color" value="#000000"
                     onchange="onSetColor(event.target.value)" />
+
 
             </div>
             <h3>File settings</h3>

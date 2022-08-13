@@ -19,7 +19,6 @@
         grid-template-rows:repeat(1, 87vh);;
         /* grid-template-rows: 80vh; */
         gap: 5px;
-        width: 100%;
     }
 
      /* .user-settings {

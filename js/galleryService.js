@@ -47,12 +47,12 @@ function getKeywords() {
 
 function savedMemes() {
     var memes = loadFromStorage(STORAGE_KEY)
-    
+
     // memes = JSON.parse(memes)
     console.log('savedMemes-memes', memes);
     // if Nothing in storage
     if (!memes || !memes.length) {
-        alert('You have no saved memes yet')
+        flashMsg('You have no saved memes yet')
         return false
     }
     gRelevantImgs = []
@@ -65,6 +65,7 @@ function savedMemes() {
 }
 
 function KeywordSearch(Keyword) {
+    Keyword = Keyword.toLowerCase()
     if (!gKeywordSearchCountMap[Keyword]) gKeywordSearchCountMap[Keyword] = 1
     else ++gKeywordSearchCountMap[Keyword]
     getRelevantImg(Keyword)
