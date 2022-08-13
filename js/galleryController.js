@@ -78,7 +78,8 @@ function onSearch(ev) {
 }
 
 function onSavedMemes() {
-    
+    // BackToGallery()
+    onBackToGallery()
     savedMemes()
     renderGallery()
 }

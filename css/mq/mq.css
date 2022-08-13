@@ -1,4 +1,4 @@
-@media (min-width: 640px) {
+@media (min-width: 700px) {
 
     /* search-section */
     .search-section {
@@ -16,19 +16,22 @@
         display: grid;
         grid-template-columns: repeat(2, 50%);
         /* grid-template-columns: 1fr 1fr; */
-        grid-template-rows: 80vh;
+        grid-template-rows:repeat(1, 87vh);;
+        /* grid-template-rows: 80vh; */
         gap: 5px;
+        width: 100%;
     }
 
-     .user-settings {
+     /* .user-settings {
         padding: 10px;
-    } 
+    }  */
 
     .canvas-container {
         background-color: rgb(72, 130, 168);
         margin: 0 auto;
-        width: 50vw;
-        height: 80vh;
+        /* width: 50vw; */
+        width: 100%;
+        height: 100%;
     }
 
 

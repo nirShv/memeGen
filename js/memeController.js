@@ -35,7 +35,8 @@ function drawText(txt, x, y, fontSize, align, color) {
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = align
     gCtx.lineWidth = 1
-    gCtx.font = `${fontSize}px impact`
+    gCtx.font = `${fontSize}px fontImpact`//fontImpact
+    // gCtx.font = 'fontImpact';
     gCtx.fillStyle = color
     gCtx.fillText(txt, x, y)
     gCtx.strokeStyle = 'black'
@@ -77,8 +78,8 @@ function onTextEdit(newTxt) {
 function onBackToGallery() {
     document.querySelector('.editor').hidden = true
     document.querySelector('.editor').classList.remove('shown')
-     setEditMode(false)
-    
+    setEditMode(false)
+
     setLines()
     BackToGallery()
 }
@@ -95,6 +96,13 @@ function onFontSizeChange(action) {
     setEditMode(true)
     renderMeme()
 }
+
+// function onFontChange(action) {
+//     console.log('action', action);
+//     setFont(action)
+//     setEditMode(true)
+//     renderMeme()
+// }
 
 function onTextAlign(textAlign) {
     setTextAlign(textAlign)

@@ -13,15 +13,17 @@ var gMeme =
     editMode: false,
     lines: [{
         txt: 'I sometimes eat Falafel',
-        size: 20,
+        size: 30,
+        // font:fontImpact,
         align: 'center',
         color: 'red',
         x: elCanvas.width / 2,//200
-        y: 40
+        y: elCanvas.height - 400//40
     },
     {
         txt: 'But when Im not I eat Shawarma',
-        size: 20,
+        size: 30,
+        // font:fontImpact,
         align: 'center',
         color: 'blue',
         x: elCanvas.width / 2,
@@ -50,6 +52,10 @@ function setFontSize(action = 0) {
     gMeme.lines[gLineIdx].size += action
     return gMeme.lines[gLineIdx].size
 }
+
+// function setFont(action){
+//     gMeme.lines[gLineIdx].size += action
+// }
 
 function MoveLine(action = 0) {
     gMeme.lines[gLineIdx].y += action
@@ -80,11 +86,11 @@ function setLineToggle() {
 function setLines(/*place*/) {
     // ------------------------------------------------------------------------------
     console.log('gMeme.fromSaved', gMeme.fromSaved);
-    if ( gMeme.fromSaved /*gMemes && gMemes.length*/) {
+    if (gMeme.fromSaved /*gMemes && gMemes.length*/) {
 
         gMeme.fromSaved = false
-        img=gImgs[gMeme.selectedImgId-1]
-        console.log('img',img);
+        img = gImgs[gMeme.selectedImgId - 1]
+        console.log('img', img);
         // console.log('gMeme fromSaved = true', gMeme);
         // return
 
@@ -115,7 +121,7 @@ function setLines(/*place*/) {
         gMeme.lines[1].color = 'blue'
         gMeme.lines[0].x = elCanvas.width / 2
         gMeme.lines[1].x = elCanvas.width / 2
-        gMeme.lines[0].y = 40
+        gMeme.lines[0].y = elCanvas.height - 400//40
         gMeme.lines[1].y = elCanvas.height - 80
     }
 }

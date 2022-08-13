@@ -5,12 +5,23 @@
 .body {
     height: 100vh;
     margin: 0;
+    background-color: rgb(252, 190, 165);
 }
 
 button {
     width: 60px;
     height: 60px;
     border-radius: 12px;
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer
+}
+
+.btn{
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    border: none;
     background-color: #ffffff;
     cursor: pointer
 }

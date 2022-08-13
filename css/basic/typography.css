@@ -1,4 +1,9 @@
 @font-face {
-    font-family: impact;
+    font-family: fontImpact;
     src: url(/font/impact/impact.ttf);
+}
+
+@font-face {
+    font-family: montserrat;
+    src: url(/font/montserrat/Montserrat-Regular.otf);
 }

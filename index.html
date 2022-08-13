@@ -52,8 +52,10 @@
                 <button onclick="onTextAlign('right')">👈</button>
                 <button onclick="onTextAlign('left')">👉</button>
                 <button onclick="onTextAlign('center')">🤘</button>
-                <select class="font-select">
-                    <option value="impact">Impact</option>
+                <select class="font-select" >
+                    <!-- onchange="onFontChange(event.target.value)" -->
+                    <option value="fontImpact">Impact</option>
+                    <!-- <option value="montserrat">Montserrat</option> -->
                 </select>
                 <input type="color" id="b-g-color" name="b-g-color" value="#000000"
                     onchange="onSetColor(event.target.value)" />
