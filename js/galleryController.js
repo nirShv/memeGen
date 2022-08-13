@@ -9,19 +9,9 @@ function renderGallery() {
 
 function loadGalleryImage() {
     const imgs = getImgForDisplay()
-    // imgs.forEach((memeImg, idx) => {
-    //     var img = new Image()
-    //     img.src = memeImg.url
-    //     img.setAttribute(`id`, idx + 1)
-    //     img.classList.add(`img`, `img${idx + 1}`)
-    //     img.setAttribute(`onclick`, "onImgSelect(this)")
-    //     document.querySelector(".grid-container").appendChild(img);
-    //     // img.onload = onImageReady.bind(null, img, txt)
-    // })
-
-
     const strHTMLs = imgs.map((memeImg, idx) =>
-        `<img src="${memeImg.url}" id=${idx + 1} class="img img${idx + 1}" onclick="onImgSelect(this)">`
+        // `<img src="${memeImg.url}" id=${idx + 1} class="img img${idx + 1}" onclick="onImgSelect(this)">`
+        `<img data-place="${idx}" src="${memeImg.url}" id=${memeImg.id} class="img img${memeImg.id}" onclick="onImgSelect(this)">`
     )
     document.querySelector('.grid-container').innerHTML = strHTMLs.join('')
     setFullGallery()
@@ -40,17 +30,9 @@ function renderSearchKeywords() {
             `
     )
     elKeywords.innerHTML = strHTMLs.join('')
-
-    // console.log('keywords',keywords);
-    //     Object.keys(keywords).forEach((keywords,idx)=>{
-    //         gKeywordSize+=fontSizes[idx]
-    //         drawText1(keywords, 30, 40*(idx+1))
-    //         gKeywordSize=7
-
-    //     })
 }
 
-
+// memes = JSON.parse(memes)
 //אחרי ההפסקה: לבדוק למה הפונקציה הזאת הורסת את עריכת הממים 
 // function renderSavedMemes(memes,onImageReady=renderImg) {
 //     // debugger
@@ -68,16 +50,12 @@ function renderSearchKeywords() {
 // }
 
 
-// test()
-// function test(){
-//     var can = new canvas()
-//     console.log('can',can);
-// }
-
 function onImgSelect(img) {
+    console.log('onImgSelectimg', img);
     setImg(+img.id)
+    console.log('onImgSelect-place',img.dataset.place);
     document.querySelector('.gallery').hidden = true
-    editorInit()
+    editorInit(/*img.dataset.place*/)
 }
 
 function BackToGallery() {
@@ -98,21 +76,9 @@ function onSearch(ev) {
     }
     renderGallery()
 }
-// function drawText1(txt, x, y) {
-//     gCtxKeywords.beginPath()
-//     gCtxKeywords.textBaseline = 'middle'
-//     gCtxKeywords.textAlign = 'center'
-//     gCtxKeywords.lineWidth = 1
-//     console.log('gKeywordSize',gKeywordSize);
-//     gCtxKeywords.font = `${gKeywordSize}px david`
-//     gCtxKeywords.fillStyle = 'yellow'
-//     console.log(txt, x, y)
-//     gCtxKeywords.fillText(txt, x, y)
-//     gCtxKeywords.strokeStyle = 'black'
-//     gCtxKeywords.strokeText(txt, x, y)
-//     gCtxKeywords.closePath()
-// }
 
 function onSavedMemes() {
+    
     savedMemes()
+    renderGallery()
 }

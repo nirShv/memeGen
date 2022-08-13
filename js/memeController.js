@@ -1,13 +1,14 @@
 'use strict'
 
-function editorInit() {
+function editorInit(/*place*/) {
     document.querySelector('.editor').hidden = false
     document.querySelector('.editor').classList.add('shown')
-    renderMeme()
+    // setEditMode(true)
+    renderMeme(/*place*/)
 }
 
-function renderMeme() {
-    const memeForRender = getMeme()
+function renderMeme(/*place*/) {
+    const memeForRender = getMeme(/*place*/)
     const imgForRender = getImg(memeForRender.selectedImgId)
     loadImage(imgForRender, renderImg, memeForRender)
 }
@@ -21,10 +22,10 @@ function loadImage(memeImg, onImageReady, memeForRender) {
 function renderImg(img, memeForRender) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     memeForRender.lines.map((line, idx) => {
-        const { txt } = line
-        drawText(txt, line.x, line.y, line.size, line.align, line.color)
+
+        drawText(line.txt, line.x, line.y, line.size, line.align, line.color)
     })
-    drawE(memeForRender.lines[gLineIdx].x, memeForRender.lines[gLineIdx].y)
+    drawRect(memeForRender.lines[gLineIdx].x, memeForRender.lines[gLineIdx].y)
     const elLine = document.querySelector('.lin1-input')
     elLine.value = memeForRender.lines[gLineIdx].txt
 }
@@ -39,74 +40,90 @@ function drawText(txt, x, y, fontSize, align, color) {
     gCtx.fillText(txt, x, y)
     gCtx.strokeStyle = 'black'
     gCtx.strokeText(txt, x, y)
-    // console.log('gCtx.textBaseline', gCtx.textBaseline);
-    // console.log('gCtx.lineWidth', gCtx.lineWidth);
-    // console.log('gCtx.font', gCtx.font);
-    // console.log('gCtx.fillStyle', gCtx.fillStyle);
-    // console.log('txt, x, y', txt, x, y);
-    // console.log('gCtx.strokeStyle', gCtx.strokeStyle);
-    // console.log('txt, x, y', txt, x, y);
-
     gCtx.closePath()
 }
 
-function drawE(x, y) {
+function drawRect(x, y) {
     gCtx.beginPath();
-    gCtx.lineWidth = 2;
-    gCtx.ellipse(x, y, 180, 30, Math.PI / 1, 0, 2 * Math.PI);
-    // gCtx.fillStyle = 'blue';
-    // gCtx.fill();
-    gCtx.strokeStyle = 'black';
+    const txt = getText()
+    const { left, top, right, bottom, width, height } = getTextBBox(gCtx, txt)
+    const half_line = gCtx.lineWidth / 2
+    gCtx.rect(left + x - half_line, top + y - half_line, width + gCtx.lineWidth, height + gCtx.lineWidth)
+    // gCtx.rect(x-gElCanvas.width/3.5, y-15, 270, 30);
+    gCtx.strokeStyle = 'red';
     gCtx.stroke();
-    gCtx.stroke();
+    gCtx.closePath();
+}
+
+function getTextBBox(gCtx, text) {
+    const metrics = gCtx.measureText(text);
+    const left = metrics.actualBoundingBoxLeft * -1;
+    const top = metrics.actualBoundingBoxAscent * -1;
+    const right = metrics.actualBoundingBoxRight;
+    const bottom = metrics.actualBoundingBoxDescent;
+    // actualBoundinBox... excludes white spaces
+    const width = text.trim() === text ? right - left : metrics.width;
+    const height = bottom - top;
+    return { left, top, right, bottom, width, height };
 }
 
 function onTextEdit(newTxt) {
     textEdit(newTxt)
+    setEditMode(true)
+    // debugger
     renderMeme()
 }
 
 function onBackToGallery() {
     document.querySelector('.editor').hidden = true
     document.querySelector('.editor').classList.remove('shown')
+     setEditMode(false)
+    
+    setLines()
     BackToGallery()
 }
 
 function onSetColor(userColor) {
+    // debugger
     setColor(userColor)
+    setEditMode(true)
     renderMeme()
 }
 
 function onFontSizeChange(action) {
-    // gFont=gFont+action
     setFontSize(action)
+    setEditMode(true)
     renderMeme()
 }
 
 function onTextAlign(textAlign) {
     setTextAlign(textAlign)
+    setEditMode(true)
     renderMeme()
 }
 
 function onLineToggle() {
     setLineToggle()
+    setEditMode(true)
     renderMeme()
 }
 
 function onMoveLine(action) {
-    console.log('action', action);
     MoveLine(action)
+    setEditMode(true)
     renderMeme()
 }
 
 function onLineDelete() {
     lineDelete()
+    setEditMode(true)
     renderMeme()
     flashMsg('Line deleted')
 }
 
 function onAddLine() {
     addLine()
+    setEditMode(true)
     renderMeme()
     flashMsg('Line added')
 }
@@ -130,14 +147,3 @@ function flashMsg(msg) {
         el.classList.remove('open')
     }, 3000)
 }
-// canvasSize()
-// function canvasSize() {
-//     gElCanvas = document.querySelector('#my-canvas')
-//     console.log('gElCanvas', gElCanvas);
-//     const canSize = {
-//         y: gElCanvas.height,
-//         x: gElCanvas.width
-//     }
-//     console.log('canSize', canSize);
-//     return canSize
-// }

@@ -29,7 +29,6 @@ function getImgForDisplay() {
     if (!gRelevantImgs || gRelevantImgs.length === 0) {
         return gImgs
     } else {
-
         return gRelevantImgs
     }
 }
@@ -41,42 +40,37 @@ function getImg(id) {
 function setFullGallery() {
     gRelevantImgs = []
 }
-// function getImgs() {
-//     return gImgs
-// }
 
 function getKeywords() {
     return gKeywordSearchCountMap
 }
 
-// function findKeyWord(KeyWordFromUser){
-//     gImgs.find(img=>{
-// function findKeyWord(KeyWordFromUser){
-//         img.keywords.forEach(keyword=>keyword===KeyWordFromUser)
-//     })
-
-// }
-
 function savedMemes() {
     var memes = loadFromStorage(STORAGE_KEY)
+    
+    // memes = JSON.parse(memes)
+    console.log('savedMemes-memes', memes);
     // if Nothing in storage
     if (!memes || !memes.length) {
         alert('You have no saved memes yet')
         return false
     }
-    gMemes = memes
-    renderSavedMemes(gMemes)
+    gRelevantImgs = []
+    gMemes = []
+    memes.forEach(meme => {
+        // meme = JSON.parse(meme)
+        gRelevantImgs.push(getImg(meme.selectedImgId))
+        gMemes.push(meme)
+    })
 }
 
 function KeywordSearch(Keyword) {
-    console.log('KeywordSearch', Keyword);
     if (!gKeywordSearchCountMap[Keyword]) gKeywordSearchCountMap[Keyword] = 1
     else ++gKeywordSearchCountMap[Keyword]
     getRelevantImg(Keyword)
 }
 
 function getRelevantImg(searchKey) {
-    console.log('getRelevantImg', searchKey);
     gImgs.forEach(img => {
         img.keywords.forEach(keyword => {
             if (keyword === searchKey) gRelevantImgs.push(img)

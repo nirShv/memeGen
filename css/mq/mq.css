@@ -1,9 +1,9 @@
 @media (min-width: 640px) {
-    
+
     /* search-section */
     .search-section {
-        grid-template-columns:1fr 8fr;
-      }
+        grid-template-columns: 1fr 8fr;
+    }
 
     /* Gallery */
     .grid-container {
@@ -17,11 +17,12 @@
         grid-template-columns: repeat(2, 50%);
         /* grid-template-columns: 1fr 1fr; */
         grid-template-rows: 80vh;
+        gap: 5px;
     }
 
-    .user-settings {
+     .user-settings {
         padding: 10px;
-    }
+    } 
 
     .canvas-container {
         background-color: rgb(72, 130, 168);
@@ -29,6 +30,8 @@
         width: 50vw;
         height: 80vh;
     }
+
+
 
     /* .editor{
         display: grid;
