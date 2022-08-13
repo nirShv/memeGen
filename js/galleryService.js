@@ -1,8 +1,8 @@
 'use strict'
 
 var gRelevantImgs = []
-
 var gMemes = []
+var gPlace=-1
 var gKeywordSearchCountMap = { 'funny': 5, 'cat': 16, 'baby': 6, 'political': 1, 'movie': 12 }
 var gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'political'] },

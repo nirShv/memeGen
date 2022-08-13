@@ -48,24 +48,24 @@ function drawRect(x, y) {
     gCtx.beginPath();
     const txt = getText()
     const { left, top, right, bottom, width, height } = getTextBBox(gCtx, txt)
-    const half_line = gCtx.lineWidth / 2
-    gCtx.rect(left + x - half_line, top + y - half_line, width + gCtx.lineWidth, height + gCtx.lineWidth)
+    const halfLine = gCtx.lineWidth / 2
+    gCtx.rect(left + x - halfLine, top + y - halfLine, width + gCtx.lineWidth, height + gCtx.lineWidth)
     // gCtx.rect(x-gElCanvas.width/3.5, y-15, 270, 30);
-    gCtx.strokeStyle = 'red';
-    gCtx.stroke();
-    gCtx.closePath();
+    gCtx.strokeStyle = 'red'
+    gCtx.stroke()
+    gCtx.closePath()
 }
 
 function getTextBBox(gCtx, text) {
-    const metrics = gCtx.measureText(text);
-    const left = metrics.actualBoundingBoxLeft * -1;
-    const top = metrics.actualBoundingBoxAscent * -1;
-    const right = metrics.actualBoundingBoxRight;
-    const bottom = metrics.actualBoundingBoxDescent;
+    const metrics = gCtx.measureText(text)
+    const left = metrics.actualBoundingBoxLeft * -1
+    const top = metrics.actualBoundingBoxAscent * -1
+    const right = metrics.actualBoundingBoxRight
+    const bottom = metrics.actualBoundingBoxDescent
     // actualBoundinBox... excludes white spaces
-    const width = text.trim() === text ? right - left : metrics.width;
-    const height = bottom - top;
-    return { left, top, right, bottom, width, height };
+    const width = text.trim() === text ? right - left : metrics.width
+    const height = bottom - top
+    return { left, top, right, bottom, width, height }
 }
 
 function onTextEdit(newTxt) {

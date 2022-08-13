@@ -28,6 +28,16 @@ button {
     
 }
 
+.gbtn{
+    width: 100px;
+    height: 60px;
+    border-radius: 12px;
+    border: none;
+    padding: 15px;
+    background-color: #ffffff;
+    cursor: pointer 
+}
+
 .btn:hover {
     color: red;
     background-color: antiquewhite;

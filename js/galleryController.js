@@ -51,9 +51,10 @@ function renderSearchKeywords() {
 
 
 function onImgSelect(img) {
-    console.log('onImgSelectimg', img);
+    console.log('onImgSelect', img);
     setImg(+img.id)
     console.log('onImgSelect-place',img.dataset.place);
+    gPlace=img.dataset.place
     document.querySelector('.gallery').hidden = true
     editorInit(/*img.dataset.place*/)
 }

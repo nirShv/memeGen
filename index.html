@@ -15,18 +15,19 @@
         <nav>
             <div class="main-header nav Gallery" onclick="onBackToGallery()">Gallery</div>
             <div class="main-header nav saved" onclick="onSavedMemes()">Saved</div>
-            <!-- <div class="main-header nav about">About</div> -->
         </nav>
     </header>
 
     <section class="gallery">
         <div class="search-section">
             <input type="search" placeholder="Search" class="search-field" onkeyup="onSearch(event)" />
+            <!-- <input type="file" class="gbtn file-input" name="image" onchange="onImgInput(event)" /> -->
             <ul class="keywords"></ul>
         </div>
+        <!-- <div class="file-input">
+            <div class="share-container"></div>
+        </div> -->
         <div class="grid-container">
-            <!-- <canvas id="keywords-canvas" height="75" width="600" style="outline:1px solid green" class="hide-canvas"></canvas> -->
-            <!-- <img src="img/2.jpg" class="img img2" onclick="onImgSelect()" alt=""> -->
         </div>
     </section>
 
@@ -41,13 +42,13 @@
                     oninput="onTextEdit(event.target.value)" />
                 <!-- <button class="btn switch-line-btn" onclick="onLineToggle()">switch line</button> -->
                 <!-- <button class="btn line-up-btn" onclick="onMoveLine(-10)">☝</button> -->
+                <!-- <button class="btn line-down-btn" onclick="onMoveLine(10)">👇</button> -->
+                <!-- <button class="btn add-line" onclick="onAddLine()">➕</button> -->
+                <!-- <button class="btn delete-line" onclick="onLineDelete()">🗑</button> -->
                 <img src="icons/up-and-down-opposite-double-arrows-side-by-side.png" class="btn"
                     onclick="onLineToggle()">
                 <img src="icons/arrow d.png" class="btn" onclick="onMoveLine(-10)">
                 <img src="icons/arrow up.png" class="btn" onclick="onMoveLine(10)">
-                <!-- <button class="btn line-down-btn" onclick="onMoveLine(10)">👇</button> -->
-                <!-- <button class="btn add-line" onclick="onAddLine()">➕</button> -->
-                <!-- <button class="btn delete-line" onclick="onLineDelete()">🗑</button> -->
                 <img src="icons/add.png" class="btn" onclick="onAddLine()">
                 <img src="icons/trash.png" class="btn" onclick="onLineDelete()">
             </div>
@@ -61,8 +62,8 @@
                 <img src="icons/increase font - icon.png" class="btn" onclick="onFontSizeChange(1)">
                 <img src="icons/decrease font - icon.png" class="btn" onclick="onFontSizeChange(-1)">
                 <img src="icons/align-to-left.png" class="btn" onclick="onTextAlign('right')">
-                <img src="icons/align-to-right.png" class="btn" onclick="onTextAlign('left')">
                 <img src="icons/center-text-alignment.png" class="btn" onclick="onTextAlign('center')">
+                <img src="icons/align-to-right.png" class="btn" onclick="onTextAlign('left')">
                 <select class="font-select">
                     <!-- onchange="onFontChange(event.target.value)" -->
                     <option value="fontImpact">Impact</option>
@@ -98,6 +99,7 @@
 
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/upload-service.js"></script>
+    <script src="js/services/input.service.js"></script>
     <script src="js/main.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/galleryService.js"></script>

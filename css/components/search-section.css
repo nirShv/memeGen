@@ -1,6 +1,6 @@
 .search-section {
   display: grid;
-  grid-template-columns: minmax(100px,1fr) 8fr;
+  grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) 7fr;
   margin: 10px;
 }
 

@@ -1,7 +1,8 @@
 'use strict'
 
 const STORAGE_KEY = 'memesDB'
-const TXT_DEFAULT = ['I sometimes eat Falafel', 'But when Im not I eat Shawarma']
+const TXT_Auto = ['I sometimes eat Falafel', 'But when Im not I eat Shawarma']
+const TXT_DEFAULT = ['Enter your text here...', 'Enter your text here...']
 
 var gLineIdx = 0
 const elCanvas = document.querySelector('#my-canvas')
@@ -12,7 +13,7 @@ var gMeme =
     fromSaved: false,
     editMode: false,
     lines: [{
-        txt: 'I sometimes eat Falafel',
+        txt: 'Enter your text here...',
         size: 30,
         // font:fontImpact,
         align: 'center',
@@ -21,7 +22,7 @@ var gMeme =
         y: elCanvas.height - 400//40
     },
     {
-        txt: 'But when Im not I eat Shawarma',
+        txt: 'Enter your text here...',
         size: 30,
         // font:fontImpact,
         align: 'center',
@@ -32,10 +33,11 @@ var gMeme =
     ]
 }
 
-function getMeme(place) {
+function getMeme(/*place*/) {
     // gMeme.lines.map(line => {
     //     line.x = elCanvas.width / 2
     // })
+    // debugger
     setLines(/*place*/)
     return gMeme
 }
@@ -86,27 +88,25 @@ function setLineToggle() {
 function setLines(/*place*/) {
     // ------------------------------------------------------------------------------
     console.log('gMeme.fromSaved', gMeme.fromSaved);
-    if (gMeme.fromSaved /*gMemes && gMemes.length*/) {
-
+    console.log('gPlace', gPlace);
+    if (gMeme.fromSaved) {
         gMeme.fromSaved = false
-        img = gImgs[gMeme.selectedImgId - 1]
-        console.log('img', img);
+        // img = gImgs[gMeme.selectedImgId - 1]
         // console.log('gMeme fromSaved = true', gMeme);
         // return
-
-
-        // gMeme.lines = []
-        // gMemes[place].lines.forEach(line => {
-        //   const  newLine = {
-        //         txt: line.txt,
-        //         size: line.size,
-        //         align: line.align,
-        //         color: line.color,
-        //         x: line.x,
-        //         y: line.y
-        //     }
-        //     gMeme.lines.push(newLine)
-        // })
+console.log('gMemes fromSaved=true',gMemes);
+        gMeme.lines = []
+        gMemes[gPlace].lines.forEach(line => {
+            const newLine = {
+                txt: line.txt,
+                size: line.size,
+                align: line.align,
+                color: line.color,
+                x: line.x,
+                y: line.y
+            }
+            gMeme.lines.push(newLine)
+        })
 
     } else if (!gMeme.editMode) {
         gMeme.lines.splice(2)
@@ -149,7 +149,7 @@ function addLine() {
 }
 
 function saveMeme() {
-    // gMeme.fromSaved = true
+    gMeme.fromSaved = true
     const meme = createMeme(gMeme)
     // const memeStr = JSON.stringify(gMeme)
     gMemes.push(meme)
