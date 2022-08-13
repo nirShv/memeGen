@@ -95,7 +95,7 @@
 
  .user-settings.section3 {
     display: grid;
-    grid-template-columns: repeat(3, minmax(120px, 166px));
+    grid-template-columns: repeat(3, minmax(125px, 166px));
     align-items: center;
     justify-items: center;
     width: 98%;
@@ -103,6 +103,11 @@
 
  .file-btn {
     width: 120px;
+ }
+
+ .btn.download{
+   cursor: auto;
+   width: 120px;
  }
 
  .update-msg {
@@ -117,3 +122,4 @@
     bottom: 10px;
     transition: bottom .5s;
  }
+

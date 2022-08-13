@@ -76,8 +76,12 @@
             <h3>File settings</h3>
             <div class="user-settings section3">
                 <button class="file-btn save-btn" onclick="onSave()">save</button>
-                <a href="#" class="file-btn" onclick="downloadCanvas(this)" download="cool-meme">Download</a>
+                <div class="btn download">
+                    <a href="#" class="file-btn" onclick="downloadCanvas(this)" download="cool-meme">Download</a>
+                </div>
+
                 <button class="file-btn Upload-btn" onclick="uploadImg()">Upload meme And Share</button>
+                <div class="share" onmouseup="hideShareBtn()"> </div>
             </div>
         </div>
 

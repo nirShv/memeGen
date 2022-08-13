@@ -149,9 +149,7 @@ function addLine() {
 }
 
 function saveMeme() {
-    // console.log('gMemes-before',gMemes);
-    // console.log('gMeme',gMeme);
-    gMeme.fromSaved = true
+    // gMeme.fromSaved = true
     const meme = createMeme(gMeme)
     // const memeStr = JSON.stringify(gMeme)
     gMemes.push(meme)

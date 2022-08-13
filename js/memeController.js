@@ -79,9 +79,13 @@ function onBackToGallery() {
     document.querySelector('.editor').hidden = true
     document.querySelector('.editor').classList.remove('shown')
     setEditMode(false)
-
     setLines()
     BackToGallery()
+}
+
+function hideShareBtn() {
+    document.querySelector('.Upload-btn').hidden = false
+    document.querySelector('.share-btn').hidden = true
 }
 
 function onSetColor(userColor) {

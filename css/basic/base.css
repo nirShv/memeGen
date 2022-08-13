@@ -28,6 +28,17 @@ button {
     
 }
 
+.btn:hover {
+    color: red;
+    background-color: antiquewhite;
+}
+
+.btn:active {
+    color: blue;
+    background-color: rgb(250, 194, 247);
+    box-shadow:#aae4fb;
+}
+
 button:hover {
     color: red;
     background-color: antiquewhite;
