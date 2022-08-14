@@ -129,19 +129,25 @@ function lineDelete() {
 }
 
 function addLine(newL) {
-    let txt=''
-    if (newL === 'txt') txt='Enter your text here...'
-    else  txt = newL
-        const newLine = {
-            txt,
-            size: 20,
-            align: 'center',
-            color: 'black',
-            y: elCanvas.height / 2,
-            x: elCanvas.width / 2
-        }
+    let txt = ''
+    let size = 20
+    if (newL === 'txt') {
+        txt = 'Enter your text here...'
+    } else {
+        txt = newL
+        size = 50
+    }
+    
+    const newLine = {
+        txt,
+        size,
+        align: 'center',
+        color: 'black',
+        y: elCanvas.height / 2,
+        x: elCanvas.width / 2
+    }
 
-        console.log('newLine',newLine);
+    console.log('newLine', newLine);
     gMeme.lines.push(newLine)
     gLineIdx = gMeme.lines.length - 1
 }

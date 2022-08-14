@@ -17,7 +17,7 @@ function _renderImg(img) {
 }
 
 function loadImageFromInput(ev, onImageReady) {
-    document.querySelector('.share-container').innerHTML = ''
+    // document.querySelector('.share-container').innerHTML = ''
 
     var reader = new FileReader()
 
