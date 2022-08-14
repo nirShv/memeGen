@@ -70,13 +70,18 @@
  .user-settings.section3 {
     display: grid;
     grid-template-columns: repeat(3, minmax(125px, 166px));
+    grid-template-rows: repeat(2, minmax(50px, 90px));
     align-items: center;
     justify-items: center;
     width: 98%;
  }
 
- .file-btn {
+  .file-btn {
     width: 120px;
+     padding-right: 30px; 
+     padding-left: 30px; 
+  
+    align-content: center;
  }
 
  .btn.download{
@@ -97,3 +102,16 @@
     transition: bottom .5s;
  }
 
+ .line-emoji {
+   grid-column: 1/-1;
+   display: grid;
+   padding-top: 10px;
+   justify-items: center;
+   grid-template-columns: repeat(6, 1fr);
+   grid-template-rows: repeat(2, 1fr);
+   gap: 1px;
+}
+
+ .line-emoji>* {
+   font-size: 38px;
+}

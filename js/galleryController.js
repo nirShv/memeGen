@@ -35,7 +35,7 @@ function onImgSelect(img) {
     setImg(+img.id)
     gPlace = img.dataset.place
     document.querySelector('.gallery').hidden = true
-    editorInit(img.dataset.saved === 'saved-meme' ? true : false)
+    editorInit(img.dataset.saved === 'saved-meme')
 }
 
 function BackToGallery() {

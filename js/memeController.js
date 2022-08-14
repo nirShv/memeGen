@@ -79,10 +79,10 @@ function onBackToGallery() {
     BackToGallery()
 }
 
-function hideShareBtn() {
-    document.querySelector('.Upload-btn').hidden = false
-    document.querySelector('.share-btn').hidden = true
-}
+// function hideShareBtn() {
+//     document.querySelector('.Upload-btn').hidden = false
+//     document.querySelector('.share-btn').hidden = true
+// }
 
 function onSetColor(userColor) {
     // debugger
@@ -128,8 +128,9 @@ function onLineDelete() {
     flashMsg('Line deleted')
 }
 
-function onAddLine() {
-    addLine()
+function onAddLine(newL) {
+    console.log(newL);
+    addLine(newL)
     setEditMode(true)
     renderMeme()
     flashMsg('Line added')

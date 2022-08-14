@@ -17,7 +17,18 @@ button {
     cursor: pointer
 }
 
-.btn{
+button:hover {
+    color: red;
+    background-color: antiquewhite;
+}
+
+button:active {
+    color: blue;
+    background-color: antiquewhite;
+    box-shadow: inset;
+}
+
+.btn {
     width: 60px;
     height: 60px;
     border-radius: 12px;
@@ -25,7 +36,6 @@ button {
     padding: 15px;
     background-color: #ffffff;
     cursor: pointer
-    
 }
 
 .gbtn{
@@ -47,15 +57,4 @@ button {
     color: blue;
     background-color: rgb(250, 194, 247);
     box-shadow:#aae4fb;
-}
-
-button:hover {
-    color: red;
-    background-color: antiquewhite;
-}
-
-button:active {
-    color: blue;
-    background-color: antiquewhite;
-    box-shadow: inset;
 }

@@ -44,7 +44,7 @@
                     onclick="onLineToggle()">
                 <img src="icons/arrow d.png" class="btn" onclick="onMoveLine(-10)">
                 <img src="icons/arrow up.png" class="btn" onclick="onMoveLine(10)">
-                <img src="icons/add.png" class="btn" onclick="onAddLine()">
+                <img src="icons/add.png" class="btn" onclick="onAddLine('txt')">
                 <img src="icons/trash.png" class="btn" onclick="onLineDelete()">
             </div>
             <h3>Fonts settings</h3>
@@ -71,9 +71,25 @@
                     <a href="#" class="file-btn" onclick="downloadCanvas(this)" download="cool-meme">Download</a>
                 </div>
 
-                <button class="file-btn Upload-btn" onclick="uploadImg()">Upload meme And Share</button>
-                <div class="share" onmouseup="hideShareBtn()"> </div>
+                <!-- <button class="file-btn Upload-btn" onclick="ShareMeme()">Upload meme And Share</button> -->
+                <img src="icons/facebook-logo.png" class="btn file-btn Upload-btn" onclick="ShareMeme()">
+                <!-- <div class="share" onmouseup="hideShareBtn()"> </div> -->
+                <div class="line-emoji">
+                    <button onclick="onAddLine('🤣')">🤣</button>
+                    <button onclick="onAddLine('😂')">😂</button>
+                    <button onclick="onAddLine('😅')">😅</button>
+                    <button onclick="onAddLine('😁')">😁</button>
+                    <button onclick="onAddLine('😎')">😎</button>
+                    <button onclick="onAddLine('😐')">😐</button>
+                    <button onclick="onAddLine('🤯')">🤯</button>
+                    <button onclick="onAddLine('🤑')">🤑</button>
+                    <button onclick="onAddLine('🤢')">🤢</button>
+                    <button onclick="onAddLine('🤮')">🤮</button>
+                    <button onclick="onAddLine('😈')">😈</button>
+                    <button onclick="onAddLine('🤡')">🤡</button>
+                </div>
             </div>
+
         </div>
 
         <div class="user-msgs">

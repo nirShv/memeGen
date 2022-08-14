@@ -100,7 +100,7 @@ function setLines(isSaved) {
         gMeme.lines.splice(2)
         gLineIdx = 0
 
-        if (gMeme.lines.length>=1) {
+        if (gMeme.lines.length >= 1) {
             gMeme.lines[0].txt = TXT_DEFAULT[0]
             gMeme.lines[0].size = 20
             gMeme.lines[0].align = 'center'
@@ -108,7 +108,7 @@ function setLines(isSaved) {
             gMeme.lines[0].x = elCanvas.width / 2
             gMeme.lines[0].y = elCanvas.height - 400//40
         }
-        if (gMeme.lines.length>=2) {
+        if (gMeme.lines.length >= 2) {
             gMeme.lines[1].txt = TXT_DEFAULT[1]
             gMeme.lines[1].size = 20
             gMeme.lines[1].align = 'center'
@@ -128,15 +128,20 @@ function lineDelete() {
     gLineIdx = 0
 }
 
-function addLine() {
-    const newLine = {
-        txt: 'Enter your text here...',
-        size: 20,
-        align: 'center',
-        color: 'black',
-        y: elCanvas.height / 2,
-        x: elCanvas.width / 2
-    }
+function addLine(newL) {
+    let txt=''
+    if (newL === 'txt') txt='Enter your text here...'
+    else  txt = newL
+        const newLine = {
+            txt,
+            size: 20,
+            align: 'center',
+            color: 'black',
+            y: elCanvas.height / 2,
+            x: elCanvas.width / 2
+        }
+
+        console.log('newLine',newLine);
     gMeme.lines.push(newLine)
     gLineIdx = gMeme.lines.length - 1
 }
